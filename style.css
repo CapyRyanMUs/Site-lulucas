@@ -1,34 +1,41 @@
 body{
-    background: purple;
+    background: rgb(51, 18, 51);
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 20px;
 
 }
 
 button{
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 24px;
     cursor: pointer;
     background: blueviolet;
 
     border-radius: 20px;
 }
 
-#caixa{
+#holder{
+    width: 400px;
+    height: 800px;
+    background: rgb(65, 14, 58);
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
 
-    width: 300px;
-    height: 200px;
+}
+
+#caixa{
+    
+    width: auto;
+    height: 100px;
     background: violet;
 
     display: flex;
-    justify-content: center;
     flex-direction: column;
-
-    align-items: center;
-    margin: 0 auto;
-    gap: 10px;
     border-radius: 20px;
     border: 5px solid blueviolet;
+
+    
 }
