@@ -3,26 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>LulucasHub</title>
-
+    <meta name="description" content="LulucasHub, um mural para compartilhar coisas do LUCAS.">
+    <title>LulucasHub | Mural</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="topbar">
+        <a class="brand" href="#inicio" aria-label="LulucasHub, início"><span class="brand-mark">L</span><span>Lulucas<span class="brand-accent">Hub</span></span></a>
+        <nav class="top-actions" aria-label="Ações principais"><button class="icon-button" type="button" aria-label="Pesquisar">⌕</button><button class="profile-chip" type="button" aria-label="Abrir seu perfil">LC</button></nav>
+    </header>
 
-    <h1>Bem-vindo!</h1>
+    <main id="inicio" class="page-shell">
+        <section class="intro" aria-labelledby="page-title">
+            <div><p class="eyebrow">MURAL DO LUCAS</p><h1 id="page-title">Mídia em que o lucas se encontra de alguma maneira.</h1><p class="intro-copy">Imagens, achados e momentos aleatórios do LUCAS.</p></div>
+            <div class="online-status"><span></span> 67 pessoas online</div>
+        </section>
 
-    <p>Site oficial do Lulucas.</p>
+        <section class="composer" aria-labelledby="composer-title">
+            <div class="composer-heading"><div class="avatar avatar-yellow">LC</div><div><h2 id="composer-title">Compartilhe no mural</h2><p>O que o LUCAS esta fazendo?</p></div></div>
+            <form id="post-form">
+                <label class="sr-only" for="post-caption">Legenda da publicação</label>
+                <textarea id="post-caption" maxlength="180" placeholder="Escreva uma legenda..." rows="2"></textarea>
+                <div id="image-preview" class="image-preview" hidden><img id="preview-image" alt="Pré-visualização da imagem selecionada"><button id="remove-image" class="remove-image" type="button" aria-label="Remover imagem">×</button></div>
+                <div class="composer-footer"><label class="upload-button" for="image-upload"><span aria-hidden="true">▧</span> Adicionar imagem</label><input id="image-upload" type="file" accept="image/*"><button class="publish-button" type="submit">Publicar <span aria-hidden="true">↗</span></button></div>
+                <p id="form-message" class="form-message" role="status"></p>
+            </form>
+        </section>
 
-    <div id="holder">
-        <div id="caixa">
-            <h4>Sexualidade oficial do Lucas</h4>
-            <button id="botao">Revelar!</button>
+        <div class="feed-layout">
+            <section class="feed" aria-label="Publicações recentes">
+                <div class="feed-heading"><div class="tabs" role="tablist" aria-label="Ordenar publicações"><button class="tab is-active" type="button" role="tab" aria-selected="true" data-sort="recent">Recentes</button><button class="tab" type="button" role="tab" aria-selected="false" data-sort="popular">Populares</button></div><span id="post-count" class="post-count">3 posts</span></div>
+                <div id="post-list">
+                    <article class="post-card" data-likes="42"><div class="post-header"><div class="user-summary"><div class="avatar avatar-coral">MF</div><div><strong>Cachorro_SUS</strong><span>há 12 min · Acre</span></div></div><button class="more-button" type="button" aria-label="Mais opções">•••</button></div><p class="post-text">Cachorro aleatorio e fds.</p><img class="post-image" src="assets/cachorrodoido.jpeg" alt="Cachorro olhando para a câmera"><div class="post-footer"><div class="post-actions"><button class="action-button like-button" type="button" aria-label="Curtir publicação"><span>♡</span> <b>42</b></button><button class="action-button" type="button" aria-label="Comentar"><span>◌</span> <b>8</b></button><button class="action-button" type="button" aria-label="Compartilhar">↗</button></div><button class="save-button" type="button" aria-label="Salvar publicação">⌑</button></div></article>
+                </div>
+            </section>
+            <aside class="side-panel" aria-label="Sobre o mural"><div class="panel-label">SOBRE O MURAL</div><h2>Um canto para postar sem cerimônia.</h2><p>Feito para compartilhar referências, fotos e pensamentos que não cabem em outro lugar.</p><div class="panel-rule"></div><div class="panel-stat"><strong>1.248</strong><span>publicações compartilhadas</span></div><div class="panel-stat"><strong>2019</strong><span>desde a primeira postagem</span></div></aside>
         </div>
-
-    </div>
-    
+    </main>
+    <footer class="site-footer"><span>LulucasHub</span><span>feito para a internet brasileira</span></footer>
     <script src="script.js"></script>
-
 </body>
 </html>
