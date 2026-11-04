@@ -8,7 +8,15 @@ const formMessage = document.getElementById('form-message');
 const postList = document.getElementById('post-list');
 const postCount = document.getElementById('post-count');
 const searchButton = document.querySelector('.icon-button');
+const profileButton = document.getElementById('profile-button');
+const settingsDialog = document.getElementById('settings-dialog');
+const closeSettingsButton = document.getElementById('close-settings');
+const themeToggle = document.getElementById('theme-toggle');
+const STORAGE_KEY = 'lulucas-posts';
+const THEME_STORAGE_KEY = 'lulucas-theme';
+const tabs = [...document.querySelectorAll('.tab')];
 let selectedImage = '';
+let activeSort = 'recent';
 
 function updatePostCount() {
     const total = postList.querySelectorAll('.post-card').length;
@@ -57,15 +65,61 @@ function createPost({ caption, image }) {
     return post;
 }
 
+function readLocalPosts() {
+    try {
+        const storedPosts = localStorage.getItem(STORAGE_KEY);
+        if (!storedPosts) return [];
+
+        const posts = JSON.parse(storedPosts);
+        if (!Array.isArray(posts)) return [];
+
+        return posts.filter((post) => post && typeof post === 'object'
+            && typeof post.caption === 'string'
+            && typeof post.image === 'string');
+    } catch {
+        return [];
+    }
+}
+
 function saveLocalPost(caption, image) {
-    const posts = JSON.parse(localStorage.getItem('lulucas-posts') || '[]');
-    posts.unshift({ caption, image });
-    localStorage.setItem('lulucas-posts', JSON.stringify(posts.slice(0, 10)));
+    try {
+        const posts = readLocalPosts();
+        posts.unshift({ caption, image });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(posts.slice(0, 10)));
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+function sortPosts(sort = activeSort) {
+    activeSort = sort;
+    const posts = [...postList.querySelectorAll('.post-card')];
+    if (sort === 'popular') {
+        posts.sort((a, b) => Number(b.dataset.likes) - Number(a.dataset.likes));
+    }
+    posts.forEach((post) => postList.appendChild(post));
+}
+
+function applyTheme(theme) {
+    const isDark = theme === 'dark';
+    document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+    themeToggle.textContent = isDark ? 'Tema claro' : 'Tema escuro';
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+}
+
+function restoreTheme() {
+    try {
+        applyTheme(localStorage.getItem(THEME_STORAGE_KEY) === 'dark' ? 'dark' : 'light');
+    } catch {
+        applyTheme('light');
+    }
 }
 
 function restoreLocalPosts() {
-    const posts = JSON.parse(localStorage.getItem('lulucas-posts') || '[]');
-    posts.reverse().forEach((postData) => postList.prepend(createPost(postData)));
+    const posts = readLocalPosts();
+    posts.slice(0, 10).reverse().forEach((postData) => postList.prepend(createPost(postData)));
+    sortPosts();
     updatePostCount();
 }
 
@@ -96,12 +150,14 @@ postForm.addEventListener('submit', (event) => {
         showMessage('Adicione uma legenda ou escolha uma imagem.');
         return;
     }
-    postList.prepend(createPost({ caption, image: selectedImage }));
-    saveLocalPost(caption, selectedImage);
+    const newPost = createPost({ caption, image: selectedImage });
+    postList.prepend(newPost);
+    const saved = saveLocalPost(caption, selectedImage);
     captionInput.value = '';
     resetImage();
-    showMessage('Publicado no mural.', false);
+    showMessage(saved ? 'Publicado no mural.' : 'Post publicado nesta sessão, mas não foi possível salvá-lo neste navegador.', !saved);
     updatePostCount();
+    sortPosts();
 });
 
 postList.addEventListener('click', (event) => {
@@ -115,6 +171,7 @@ postList.addEventListener('click', (event) => {
         post.dataset.likes = String(count);
         likeButton.querySelector('b').textContent = count;
         likeButton.querySelector('span').textContent = likeButton.classList.contains('is-liked') ? '♥' : '♡';
+        if (activeSort === 'popular') sortPosts('popular');
     }
     if (saveButton) {
         saveButton.classList.toggle('is-saved');
@@ -126,19 +183,30 @@ postList.addEventListener('click', (event) => {
     }
 });
 
-document.querySelectorAll('.tab').forEach((tab) => {
+tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab').forEach((item) => {
+        tabs.forEach((item) => {
             item.classList.toggle('is-active', item === tab);
             item.setAttribute('aria-selected', String(item === tab));
         });
-        const posts = [...postList.querySelectorAll('.post-card')];
-        if (tab.dataset.sort === 'popular') {
-            posts.sort((a, b) => Number(b.dataset.likes) - Number(a.dataset.likes));
-        }
-        posts.forEach((post) => postList.appendChild(post));
+        sortPosts(tab.dataset.sort);
     });
 });
 
 searchButton.addEventListener('click', () => captionInput.focus());
+profileButton.addEventListener('click', () => settingsDialog.showModal());
+closeSettingsButton.addEventListener('click', () => settingsDialog.close());
+settingsDialog.addEventListener('click', (event) => {
+    if (event.target === settingsDialog) settingsDialog.close();
+});
+themeToggle.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(nextTheme);
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    } catch {
+        // O tema continua aplicado durante esta sessão mesmo sem armazenamento disponível.
+    }
+});
+restoreTheme();
 restoreLocalPosts();

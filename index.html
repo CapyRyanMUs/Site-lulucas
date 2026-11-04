@@ -10,12 +10,12 @@
 <body>
     <header class="topbar">
         <a class="brand" href="#inicio" aria-label="LulucasHub, início"><span class="brand-mark">L</span><span>Lulucas<span class="brand-accent">Hub</span></span></a>
-        <nav class="top-actions" aria-label="Ações principais"><button class="icon-button" type="button" aria-label="Pesquisar">⌕</button><button class="profile-chip" type="button" aria-label="Abrir seu perfil">LC</button></nav>
+        <nav class="top-actions" aria-label="Ações principais"><button class="icon-button" type="button" aria-label="Pesquisar">⌕</button><button id="profile-button" class="profile-chip" type="button" aria-label="Abrir configurações do perfil" aria-haspopup="dialog" aria-controls="settings-dialog">LC</button></nav>
     </header>
 
     <main id="inicio" class="page-shell">
         <section class="intro" aria-labelledby="page-title">
-            <div><p class="eyebrow">MURAL DO LUCAS</p><h1 id="page-title">Mídia em que o lucas se encontra de alguma maneira.</h1><p class="intro-copy">Imagens, achados e momentos aleatórios do LUCAS.</p></div>
+            <div><p class="eyebrow">MURAL DO LUCAS</p><h1 id="page-title">Mídia que lembram o LUCAS</h1><p class="intro-copy">Imagens, mídias do LUCAS.</p></div>
             <div class="online-status"><span></span> 67 pessoas online</div>
         </section>
 
@@ -34,13 +34,24 @@
             <section class="feed" aria-label="Publicações recentes">
                 <div class="feed-heading"><div class="tabs" role="tablist" aria-label="Ordenar publicações"><button class="tab is-active" type="button" role="tab" aria-selected="true" data-sort="recent">Recentes</button><button class="tab" type="button" role="tab" aria-selected="false" data-sort="popular">Populares</button></div><span id="post-count" class="post-count">3 posts</span></div>
                 <div id="post-list">
-                    <article class="post-card" data-likes="42"><div class="post-header"><div class="user-summary"><div class="avatar avatar-coral">MF</div><div><strong>Cachorro_SUS</strong><span>há 12 min · Acre</span></div></div><button class="more-button" type="button" aria-label="Mais opções">•••</button></div><p class="post-text">Cachorro aleatorio e fds.</p><img class="post-image" src="assets/cachorrodoido.jpeg" alt="Cachorro olhando para a câmera"><div class="post-footer"><div class="post-actions"><button class="action-button like-button" type="button" aria-label="Curtir publicação"><span>♡</span> <b>42</b></button><button class="action-button" type="button" aria-label="Comentar"><span>◌</span> <b>8</b></button><button class="action-button" type="button" aria-label="Compartilhar">↗</button></div><button class="save-button" type="button" aria-label="Salvar publicação">⌑</button></div></article>
+                    <article class="post-card" data-likes="42"><div class="post-header"><div class="user-summary"><div class="avatar avatar-coral">MF</div><div><strong>Cachorro_SUS</strong><span>há 12 min · Acre</span></div></div><button class="more-button" type="button" aria-label="Mais opções">•••</button></div><p class="post-text">Cachorro do Lucas, o nome dele é LULUCAS!.</p><img class="post-image" src="assets/cachorrodoido.jpeg" alt="Cachorro olhando para a câmera"><div class="post-footer"><div class="post-actions"><button class="action-button like-button" type="button" aria-label="Curtir publicação"><span>♡</span> <b>42</b></button><button class="action-button" type="button" aria-label="Comentar"><span>◌</span> <b>8</b></button><button class="action-button" type="button" aria-label="Compartilhar">↗</button></div><button class="save-button" type="button" aria-label="Salvar publicação">⌑</button></div></article>
+                    <article class="post-card" data-likes="18"><div class="post-header"><div class="user-summary"><div class="avatar avatar-blue">LC</div><div><strong>lucas</strong><span>ontem · Anonimo</span></div></div><button class="more-button" type="button" aria-label="Mais opções">•••</button></div><p class="post-text">Lucas porque vc pilota tudo?, alem de ser ruim em tudo.</p><div class="quote-image"><span>“</span><p>Se fizer "TUM" já é certo!.</p><small>— lucas</small></div><div class="post-footer"><div class="post-actions"><button class="action-button like-button" type="button" aria-label="Curtir publicação"><span>♡</span> <b>18</b></button><button class="action-button" type="button" aria-label="Comentar"><span>◌</span> <b>3</b></button><button class="action-button" type="button" aria-label="Compartilhar">↗</button></div><button class="save-button" type="button" aria-label="Salvar publicação">⌑</button></div></article>
+                    <article class="post-card" data-likes="27"><div class="post-header"><div class="user-summary"><div class="avatar avatar-green">MF</div><div><strong>PedroPaiTaOn1928</strong><span>há 2 dias · Xique-Xique BH</span></div></div><button class="more-button" type="button" aria-label="Mais opções">•••</button></div><p class="post-text">Audio vazado do Lucas xorando por ter tomado um no scope voador no fortnite pelo Pedro.</p><div class="music-card"><div class="music-art">♫</div><div><strong>choro</strong><span>Audio do zapzap · 3:24</span></div><button type="button" aria-label="Reproduzir música">▶</button></div><div class="post-footer"><div class="post-actions"><button class="action-button like-button" type="button" aria-label="Curtir publicação"><span>♡</span> <b>27</b></button><button class="action-button" type="button" aria-label="Comentar"><span>◌</span> <b>5</b></button><button class="action-button" type="button" aria-label="Compartilhar">↗</button></div><button class="save-button" type="button" aria-label="Salvar publicação">⌑</button></div></article>
                 </div>
             </section>
-            <aside class="side-panel" aria-label="Sobre o mural"><div class="panel-label">SOBRE O MURAL</div><h2>Um canto para postar sem cerimônia.</h2><p>Feito para compartilhar referências, fotos e pensamentos que não cabem em outro lugar.</p><div class="panel-rule"></div><div class="panel-stat"><strong>1.248</strong><span>publicações compartilhadas</span></div><div class="panel-stat"><strong>2019</strong><span>desde a primeira postagem</span></div></aside>
+            <aside class="side-panel" aria-label="Sobre o mural"><div class="panel-label">SOBRE O MURAL LUCAS</div><h2>Um canto para postar sobre o Lucas.</h2><p>Feito para compartilhar referências, fotos e pensamentos sobre o Lucas.</p><div class="panel-rule"></div><div class="panel-stat"><strong>1.248</strong><span>publicações compartilhadas</span></div><div class="panel-stat"><strong>1945</strong><span>desde a primeira postagem</span></div></aside>
         </div>
     </main>
-    <footer class="site-footer"><span>LulucasHub</span><span>feito para a internet brasileira</span></footer>
+    <footer class="site-footer"><span>LulucasHub</span><span>feito para estudar e zoar o Lucas</span></footer>
+    <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title">
+        <div class="settings-header"><div><p class="eyebrow">PREFERÊNCIAS</p><h2 id="settings-title">Configurações</h2></div><button id="close-settings" class="settings-close" type="button" aria-label="Fechar configurações">×</button></div>
+        <div class="settings-options">
+            <div class="theme-option"><div><strong>Tema</strong><span>Escolha a aparência do mural</span></div><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Tema escuro</button></div>
+            <button class="settings-link" type="button">Mais Configurações <span aria-hidden="true">›</span></button>
+            <button class="settings-link" type="button">Edita Perfil <span aria-hidden="true">›</span></button>
+            <button class="settings-link settings-exit" type="button">Sair <span aria-hidden="true">↗</span></button>
+        </div>
+    </dialog>
     <script src="script.js"></script>
 </body>
 </html>
